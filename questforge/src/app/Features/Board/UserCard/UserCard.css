@@ -1,0 +1,155 @@
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #c7a062;
+  box-shadow: 0 4px 16px rgba(199, 160, 98, 0.3);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 1%;
+}
+
+.user-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(199, 160, 98, 0.4);
+  border-color: #d4b876;
+}
+
+.user-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(199, 160, 98, 0.3);
+}
+
+.user-card-image-container {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.user-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover .user-card-image {
+  transform: scale(1.05);
+}
+
+
+.user-card-info {
+  background: linear-gradient(135deg, #0b1533 0%, #1a237e 50%, #512da8 100%);
+  padding: 6px 10px 10px 10px;
+  min-height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-card-header {
+  margin-bottom: 6px;
+}
+
+.user-card-name {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.user-card-age {
+  color: #c7a062;
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.user-card-location {
+  color: #c7a062;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(199, 160, 98, 0.2);
+  padding: 1px 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(199, 160, 98, 0.3);
+}
+
+.user-card-quote {
+  color: #e8eaf6;
+  font-size: 0.65rem;
+  font-style: italic;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+  opacity: 0.95;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.user-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 48%, rgba(199, 160, 98, 0.1) 50%, transparent 52%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.user-card:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .user-card-name {
+    font-size: 1.2rem;
+  }
+  
+  .user-card-quote {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-card {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .user-card-image-container {
+    height: 180px;
+  }
+  
+  .user-card-info {
+    padding: 16px;
+  }
+  
+  .user-card-name {
+    font-size: 1.1rem;
+  }
+  
+  .user-card-age {
+    font-size: 0.8rem;
+  }
+  
+  .user-card-quote {
+    font-size: 0.75rem;
+  }
+}

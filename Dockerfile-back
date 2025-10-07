@@ -1,0 +1,28 @@
+# ==========================
+# Etapa de compilación
+# ==========================
+FROM maven:3.9.11-eclipse-temurin-25 AS builder
+
+WORKDIR /app
+
+# Copiamos pom y código
+COPY pom.xml .
+COPY src ./src
+
+# Compilamos (sin tests para acelerar)
+RUN mvn clean package -DskipTests
+
+# ==========================
+# Etapa de ejecución
+# ==========================
+FROM eclipse-temurin:25-jdk
+
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copiamos el JAR compilado
+COPY --from=builder /app/target/*.jar app.jar
+
+# Arrancamos la aplicación
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]

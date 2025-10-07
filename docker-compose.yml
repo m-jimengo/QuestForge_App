@@ -1,0 +1,132 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    ports:
+      - "54321:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - micro_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["back"]
+
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: ../Dockerfile-back
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - micro_net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8761/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["back"]
+
+  questforge:
+    build:
+      context: ./questforge
+      dockerfile: ../Dockerfile-front
+    container_name: questforge
+    ports:
+      - "80:80"
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -sf http://localhost/index.html || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["front"]
+
+  cloud-gateway:
+    build:
+      context: ./cloud-gateway
+      dockerfile: ../Dockerfile-back
+    container_name: cloud-gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - micro_net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["back"]
+
+  login-service:
+    build:
+      context: ./login-service
+      dockerfile: ../Dockerfile-back
+    container_name: login-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/login_db
+      - SPRING_DATASOURCE_USERNAME=login_user
+      - SPRING_DATASOURCE_PASSWORD=loginpass
+      - SERVER_FORWARD_HEADERS_STRATEGY=native
+    ports:
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - micro_net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8081/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["back"]
+
+  message-service:
+    build:
+      context: ./message-service
+      dockerfile: ../Dockerfile-back
+    container_name: message-service
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/message_db
+      - SPRING_DATASOURCE_USERNAME=message_user
+      - SPRING_DATASOURCE_PASSWORD=messagepass
+      - SERVER_FORWARD_HEADERS_STRATEGY=native
+    ports:
+      - "8082:8082"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - micro_net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8082/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles: ["back"]
+
+volumes:
+  postgres_data:
+
+networks:
+  micro_net:
+    driver: bridge

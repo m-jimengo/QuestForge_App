@@ -1,0 +1,375 @@
+.filtersBar {
+  --gold: #c7a062;
+  --navy: #0b1533;
+  --navy-panel: #0f1e44;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 55px 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  z-index: 20;
+  flex-wrap: nowrap;        
+}
+
+.filter {
+  flex: 0 0 auto;
+}
+
+.ms {
+  min-width: 160px;
+}
+
+.searchWrap {
+  position: relative;
+  flex: 1;
+  max-width: 240px;
+  max-height: 100px;
+  margin-left: 5%; 
+}
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 59%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  pointer-events: none;
+  font-size: 0.85rem;
+  width: 14px;
+  height: 14px;
+}
+
+.searchInput {
+  width: 220px;
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 12px 5px 40px;
+  border-radius: 6px;
+  outline: none !important;
+  box-shadow: none !important;
+  font-size: 0.9rem;
+}
+
+.searchInput::placeholder {
+  color: var(--gold);
+  opacity: 0.7;
+}
+.searchInput:focus {
+  background: var(--navy);
+  border-color: var(--gold);
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ms {
+  background: transparent !important;
+  border: 2px solid transparent !important;
+  min-width: 160px;
+  max-width: 200px !important;
+  padding: 6px 10px;
+  transition: background 0.2s, color 0.2s;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  overflow: hidden !important;
+}
+
+.ms:not(:global(.p-inputwrapper-filled)) :global(.p-multiselect-label) {
+  color: var(--gold) !important;
+  background: transparent !important;
+  opacity: 0.95;
+  padding: 0 24px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+}
+
+.ms :global(.p-multiselect-trigger),
+.ms :global(.p-multiselect-trigger-icon) {
+  color: var(--gold) !important;
+  background: transparent !important;
+  border-left: none;
+}
+
+.ms:global(.p-inputwrapper-filled),
+.ms:global(.p-focus),
+.ms:global(.p-inputwrapper-focus) {
+  background: rgba(11, 21, 51, 0.85) !important;
+  border: 2px solid var(--gold) !important;
+  border-radius: 6px !important;
+  height: 40px !important;
+  max-width: 200px !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 10px rgba(199, 160, 98, 0.15),
+              0 0 20px rgba(199, 160, 98, 0.08),
+              inset 0 0 8px rgba(199, 160, 98, 0.05) !important;
+  transition: all 0.3s ease !important;
+}
+
+.ms:global(.p-inputwrapper-filled) :global(.p-multiselect-label-container),
+.ms:global(.p-focus) :global(.p-multiselect-label-container),
+.ms:global(.p-inputwrapper-focus) :global(.p-multiselect-label-container) {
+  background: transparent !important;
+  border-radius: 4px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+}
+
+.ms:global(.p-inputwrapper-filled):not(:global(.p-disabled)),
+.ms:global(.p-focus):not(:global(.p-disabled)) {
+  background: rgba(11, 21, 51, 0.85) !important;
+  border: 2px solid var(--gold) !important;
+}
+
+.ms:global(.p-inputwrapper-filled):hover,
+.ms:global(.p-focus):hover {
+  box-shadow: 0 0 15px rgba(199, 160, 98, 0.25),
+              0 0 30px rgba(199, 160, 98, 0.12),
+              inset 0 0 12px rgba(199, 160, 98, 0.08) !important;
+}
+
+.ms :global(.p-multiselect-token) {
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 0.8rem;
+  margin: 2px 4px !important;
+  padding: 4px 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.ms :global(.p-multiselect-label-container) {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  flex: 1 !important;
+  margin-right: 30px !important;
+  max-width: calc(100% - 30px) !important;
+}
+
+.ms :global(.p-multiselect-token) {
+  background: transparent !important;
+  border: none !important;
+  color: #fff !important;
+  font-size: 0.8rem;
+  margin: 2px 4px !important;
+  padding: 4px 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  max-width: 120px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.ms :global(.p-multiselect-token:nth-child(n+3)) {
+  display: none !important;
+}
+
+.ms :global(.p-multiselect-label)::after,
+.ms :global(.p-multiselect-label-container)::after,
+.ms :global(.p-multiselect-label) *::after,
+.ms :global(.p-multiselect-label-container) *::after,
+.ms :global(*[class*="ellipsis"])::after,
+.ms :global(*[class*="overflow"])::after {
+  font-size: 0.3rem !important;
+  line-height: 0.3rem !important;
+  transform: scale(0.5) !important;
+}
+
+.ms :global(.p-multiselect-label),
+.ms :global(.p-multiselect-label-container) * {
+  font-size: 0.8rem !important;
+}
+
+.ms:global(.p-inputwrapper-filled) :global(.p-multiselect-label) {
+  color: #fff !important;
+}
+
+.panel {
+  background: rgba(11, 21, 51, 0.85) !important;
+  border: none !important;
+  padding: 10px !important;
+  box-shadow: inset 0 0 0 1px var(--gold) !important;
+  border-radius: 6px !important;
+  color: var(--gold) !important;
+}
+
+.panel :global(.p-multiselect-header) {
+  padding: 8px 0 !important;
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.panel :global(.p-multiselect-filter-container) {
+  padding: 0 10px !important;
+  position: relative !important;
+}
+
+.panel :global(.p-multiselect-filter-container .p-inputtext) {
+  padding-right: 28px !important;
+}
+
+.panel :global(.p-multiselect-filter-container .pi-times) {
+  right: 12px !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper) {
+  padding: 4px 6px !important;
+}
+
+.panel :global(.p-multiselect-item) {
+  padding: 6px 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  column-gap: 10px !important;
+  color: var(--gold) !important;
+  background: transparent !important;
+}
+
+.panel :global(.p-multiselect-item:hover) {
+  background: rgba(5, 10, 25, 0.8) !important;
+  color: var(--gold) !important;
+  border-radius: 4px !important;
+}
+
+.panel :global(.p-multiselect-item.p-highlight) {
+  background: rgba(5, 10, 25, 0.5) !important;
+  color: var(--gold) !important;
+  border-radius: 9px !important;
+}
+
+
+.panel :global(.p-multiselect-items .p-multiselect-item .p-checkbox-icon) {
+  display: block !important;
+  color: var(--gold) !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+.panel :global(.p-multiselect-header .p-checkbox .p-checkbox-icon) {
+  display: block !important;
+  color: var(--gold) !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+}
+
+.panel :global(.p-multiselect-filter-container .p-inputtext) {
+  width: 100% !important;
+  max-width: 180px !important;
+  background: rgba(5, 10, 25, 0.9) !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  padding: 6px 10px !important;
+  font-size: 0.8rem !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+.panel :global(.p-multiselect-filter-container .p-inputtext:hover),
+.panel :global(.p-multiselect-filter-container .p-inputtext:focus) {
+  border-color: #e4cd80 !important;
+  box-shadow: 0 0 8px rgba(179, 159, 48, 0.15), 
+              0 0 15px rgba(255, 215, 0, 0.08),
+              inset 0 0 6px rgba(255, 215, 0, 0.05) !important;
+  background: rgba(5, 10, 25, 0.95) !important;
+  outline: none !important;
+}
+
+.panel :global(.p-multiselect-filter-container .p-inputtext:focus) {
+  box-shadow: 0 0 12px rgba(241, 219, 89, 0.2), 
+              0 0 20px rgba(255, 215, 0, 0.1),
+              inset 0 0 8px rgba(255, 215, 0, 0.08) !important;
+}
+
+.panel :global(.p-multiselect-filter-container .p-icon),
+.panel :global(.p-multiselect-filter-container .p-inputtext-icon-left .p-icon),
+.panel :global(.p-multiselect-filter-container .pi-search) {
+  display: none !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper),
+.panel :global(.p-multiselect-panel .p-multiselect-items) {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(180, 140, 70, 0.7) transparent !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper::-webkit-scrollbar),
+.panel :global(.p-multiselect-panel .p-multiselect-items::-webkit-scrollbar) {
+  width: 6px !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper::-webkit-scrollbar-track),
+.panel :global(.p-multiselect-panel .p-multiselect-items::-webkit-scrollbar-track) {
+  background: transparent !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper::-webkit-scrollbar-thumb),
+.panel :global(.p-multiselect-panel .p-multiselect-items::-webkit-scrollbar-thumb) {
+  background: rgba(180, 140, 70, 0.7) !important;
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+.panel :global(.p-multiselect-items-wrapper::-webkit-scrollbar-thumb:hover),
+.panel :global(.p-multiselect-panel .p-multiselect-items::-webkit-scrollbar-thumb:hover) {
+  background: rgba(180, 140, 70, 0.9) !important;
+}
+
+.panel :global(.p-multiselect-items .p-multiselect-item .p-checkbox .p-checkbox-box) {
+  background: rgba(15, 25, 45, 0.6) !important;
+  border: 1px solid rgba(120, 90, 160, 0.4) !important;
+  border-radius: 3px !important;
+  transition: all 0.3s ease !important;
+}
+
+.panel :global(.p-multiselect-items .p-multiselect-item .p-checkbox .p-checkbox-box:hover) {
+  border-color: rgba(140, 110, 180, 0.6) !important;
+  background: rgba(20, 30, 50, 0.7) !important;
+}
+
+.panel :global(.p-multiselect-items .p-multiselect-item .p-checkbox.p-checkbox-checked .p-checkbox-box) {
+  background: rgba(110, 80, 150, 0.3) !important;
+  border-color: rgba(140, 110, 180, 0.8) !important;
+}
+
+.panel :global(.p-multiselect-items .p-multiselect-item .p-checkbox.p-checkbox-checked .p-checkbox-box:hover) {
+  background: rgba(120, 90, 160, 0.4) !important;
+  border-color: rgba(150, 120, 190, 0.9) !important;
+}
+
+.panel :global(.p-multiselect-header .p-checkbox .p-checkbox-box) {
+  background: rgba(15, 25, 45, 0.6) !important;
+  border: 1px solid rgba(120, 90, 160, 0.4) !important;
+  border-radius: 3px !important;
+  transition: all 0.3s ease !important;
+}
+
+.panel :global(.p-multiselect-header .p-checkbox.p-checkbox-checked .p-checkbox-box) {
+  background: rgba(110, 80, 150, 0.3) !important;
+  border-color: rgba(140, 110, 180, 0.8) !important;
+}
+
+
+

@@ -1,0 +1,14 @@
+{
+  "id": 9,
+  "name": "Elena Shadowweaver",
+  "age": 26,
+  "gender": "female",
+  "email": "elena.shadowweaver@questforge.com",
+  "bio": "A skilled mage specializing in shadow magic and illusion spells. Elena has traveled across the mystical realms, studying ancient arcane arts and collecting rare magical artifacts. She's known for her strategic mind and ability to think several steps ahead in both combat and puzzle-solving scenarios.",
+  "location": "Arcane Sanctum, Mystic Peaks",
+  "quote": "Magic is not about power, it's about understanding the threads that bind reality together.",
+  "availability": "weekends",
+  "playStyle": "strategic",
+  "rolType": "mage",
+  "image": "/assets/users/userPhoto.png"
+}

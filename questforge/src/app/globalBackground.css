@@ -1,0 +1,65 @@
+
+.global-page {
+  position: relative;
+  height: 100vh;
+  padding-top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle,
+    rgb(145, 78, 211) 15%,
+    rgb(90, 53, 151) 40%,
+    rgb(21, 21, 50) 100%
+  );
+}
+
+.global-mapBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background: url("./assets/map.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.45;
+  animation: moveMap 60s infinite alternate ease-in-out;
+}
+
+@keyframes moveMap {
+  0%   { transform: translate(0%, 0%) rotate(0deg) scale(1.1); }
+  20%  { transform: translate(-5%, 4%) rotate(1deg) scale(1.12); }
+  40%  { transform: translate(4%, -6%) rotate(-1deg) scale(1.1); }
+  60%  { transform: translate(-6%, -4%) rotate(1deg) scale(1.12); }
+  80%  { transform: translate(5%, 6%) rotate(-1deg) scale(1.1); }
+  100% { transform: translate(0%, 0%) rotate(0deg) scale(1.1); }
+}
+
+.global-main {
+  position: relative;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.global-mapBackground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 30, 70, 0.1);
+}
+.global-mapBackground::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(20, 10, 40, 0.2) 0%,  
+    rgba(20, 10, 40, 0.35) 50%, 
+    rgba(20, 10, 50, 0.9) 100% 
+  );
+  pointer-events: none; 
+}

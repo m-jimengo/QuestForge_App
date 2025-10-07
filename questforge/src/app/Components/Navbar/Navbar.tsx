@@ -1,0 +1,67 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { UserService } from "../../Services/User/user-service";
+import { User } from "../../Interfaces/User/user-interface";
+import { IMAGES } from "../../Constants/Images/Images";
+
+const Navbar: React.FC = () => {
+	const [user, setUser] = useState<User | null>(null);
+
+	useEffect(() => {
+		UserService.getUser().then(setUser);
+	}, []);
+
+	return (
+		<nav className="navbar">
+			<div className="navbar-left">
+						<Image
+							src={IMAGES.NAVBAR_LOGO}
+							alt="Logo"
+							width={100}
+							height={100}
+							className="navbar-logo"
+							quality={100}
+						/>
+			</div>
+			<div className="navbar-right">
+				<div className="navbar-center">
+					<a href="/people" className="navbar-link">
+						<Image
+							src={IMAGES.PEOPLE_ICON}
+							alt="People"
+							width={28}
+							height={28}
+							className="navbar-icon"
+						/>
+						<span>People</span>
+					</a>
+					<a href="/papyrus" className="navbar-link">
+						<Image
+							src={IMAGES.PAPYRUS_ICON}
+							alt="Papyrus"
+							width={28}
+							height={28}
+							className="navbar-icon"
+						/>
+						<span>PlayRooms</span>
+					</a>
+				</div>
+
+				{user && (
+					<div className="navbar-user-photo">
+						<Image
+							src={user.image}
+							alt={user.name}
+							width={40}
+							height={40}
+							className="navbar-user-img"
+						/>
+					</div>
+				)}
+			</div>
+		</nav>
+	);
+};
+
+export default Navbar;

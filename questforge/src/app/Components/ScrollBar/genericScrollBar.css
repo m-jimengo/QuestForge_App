@@ -1,0 +1,123 @@
+
+.generic-scrollbar-wrapper {
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  position: fixed;
+  z-index: 5;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 19%;
+}
+
+
+.scrollbar-title {
+  color: #ffd700 !important;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.generic-scrollbar {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 6px !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Default sizing */
+.generic-scrollbar {
+  width: 100%;
+  height: 200px;
+}
+
+/* Size variants */
+.generic-scrollbar.small {
+  width: 300px;
+  height: 150px;
+}
+
+.generic-scrollbar.medium {
+  width: 500px;
+  height: 300px;
+}
+
+.generic-scrollbar.large {
+  width: 800px;
+  height: 500px;
+}
+
+.generic-scrollbar.full-width {
+  width: 100%;
+}
+
+.generic-scrollbar.full-height {
+  height: 100vh;
+}
+
+/* Custom sizing using CSS custom properties */
+.generic-scrollbar.custom-size {
+  width: var(--scrollbar-width, 100%);
+  height: var(--scrollbar-height, 200px);
+}
+
+.scroll-content {
+  padding: 1rem;
+  color: #d4af37 !important;
+}
+
+.generic-scrollbar.p-scrollpanel .p-scrollpanel-bar {
+  background: rgba(11, 21, 51, 0.4) !important;
+  width: 8px !important;
+  border-radius: 4px !important;
+  opacity: 0.8 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.generic-scrollbar.p-scrollpanel:hover .p-scrollpanel-bar {
+  opacity: 1 !important;
+}
+
+.generic-scrollbar.p-scrollpanel .p-scrollpanel-thumb {
+  background: linear-gradient(to bottom, #ffd700, #e6c200) !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+  opacity: 1 !important;
+  border: 1px solid #b8860b !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  min-height: 20px !important;
+}
+
+.generic-scrollbar.p-scrollpanel .p-scrollpanel-thumb:hover {
+  background: linear-gradient(to bottom, #ffed4e, #ffd700) !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4) !important;
+  transform: scale(1.1) !important;
+}
+
+.generic-scrollbar .p-scrollpanel-content {
+  scrollbar-width: thin !important;
+  scrollbar-color: #ffd700 rgba(11, 21, 51, 0.4) !important;
+}
+
+.generic-scrollbar .p-scrollpanel-content::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+.generic-scrollbar .p-scrollpanel-content::-webkit-scrollbar-track {
+  background: rgba(11, 21, 51, 0.4) !important;
+  border-radius: 4px !important;
+}
+
+.generic-scrollbar .p-scrollpanel-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ffd700, #e6c200) !important;
+  border-radius: 4px !important;
+  border: 1px solid #b8860b !important;
+}
+
+.generic-scrollbar .p-scrollpanel-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ffed4e, #ffd700) !important;
+}

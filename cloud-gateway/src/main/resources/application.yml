@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: cloud-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+#      routes:
+#        - id: login-service
+#          uri: lb://login-service
+#          predicates:
+#            - Path=/login/**
+#          filters:
+#            - StripPrefix=1
+#        - id: message-service
+#          uri: lb://message-service
+#          predicates:
+#            - Path=/message/**
+#          filters:
+#            - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,actuator,health,info
+  gateway:
+    enabled: true
+    actuator:
+      verbose:
+        enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.netflix.eureka: TRACE
+    com.netflix.discovery: INFO
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE
+    reactor.netty.http.client: TRACE
