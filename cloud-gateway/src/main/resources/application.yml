@@ -1,6 +1,7 @@
 spring:
   application:
     name: cloud-gateway
+
   cloud:
     gateway:
       server:
@@ -9,19 +10,24 @@ spring:
             locator:
               enabled: true
               lower-case-service-id: true
-#      routes:
-#        - id: login-service
-#          uri: lb://login-service
-#          predicates:
-#            - Path=/login/**
-#          filters:
-#            - StripPrefix=1
-#        - id: message-service
-#          uri: lb://message-service
-#          predicates:
-#            - Path=/message/**
-#          filters:
-#            - StripPrefix=1
+
+      # 🌍 CORS global para permitir peticiones desde el frontend (Next.js)
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+
+      # ⚙️ (opcional) Definición de rutas si no usas discovery locator
+      # routes:
+      #   - id: user-service
+      #     uri: lb://user-service
+      #     predicates:
+      #       - Path=/user-service/**
+      #     filters:
+      #       - StripPrefix=1
 
 eureka:
   client:

@@ -1,5 +1,5 @@
-package es.tsumeapps.user_service.exception.jpa.repository;
-import es.tsumeapps.user_service.exception.jpa.entity.User;
+package es.tsumeapps.user_service.jpa.repository;
+import es.tsumeapps.user_service.jpa.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

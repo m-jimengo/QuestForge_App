@@ -1,28 +1,24 @@
-import { User, UserFilters } from '../../Interfaces/Board/user-card-interface';
-import peopleData from '../../Data/people.json';
+import { http } from "./httpClient";
+import { CommonResponse } from "./response";
+import { User } from "../../Interfaces/Board/user-card-interface";
+
+const BASE_URL = "http://localhost:8080/user-service/users";
 
 export class UserCardService {
-  private static users: User[] = peopleData as User[];
+  static async getAllUsers(): Promise<CommonResponse<User[]>> {
+    console.log("📡 UserCardService.getAllUsers called")
+    console.log("🔗 BASE_URL:", BASE_URL);
+    console.log("🧩 imported http:", http); 
 
- 
-  static async getAllUsers(): Promise<User[]> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.users);
-      }, 100);
-    });
+    try {
+      const response = await http<User[]>(BASE_URL, { method: "GET" });
+      console.log("✅ Response from http:", response); 
+      return response;
+    } catch (error) {
+      console.error("❌ Error calling http:", error);
+      throw error;
+    }
   }
-
-
-  static async getUserById(id: number): Promise<User | null> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const user = this.users.find(user => user.id === id);
-        resolve(user || null);
-      }, 100);
-    });
-  }
-
 }
 
 export default UserCardService;

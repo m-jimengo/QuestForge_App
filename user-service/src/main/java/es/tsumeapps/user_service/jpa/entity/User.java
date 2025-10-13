@@ -1,7 +1,8 @@
-package es.tsumeapps.user_service.exception.jpa.entity;
+package es.tsumeapps.user_service.jpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "\"user\"")
@@ -38,26 +39,25 @@ public class User {
     @Column(name = "user_quote", length = 255)
     private String quote;
 
-    @Column(name = "user_avaiability", length = 255)
-    private String avaiability;
-
-    @ManyToOne
-    @JoinColumn(name = "user_play_style")
-    private PlayStyle playStyle;
-
-    @ManyToOne
-    @JoinColumn(name = "user_rol_type")
-    private RolType rolType;
+    @Column(name = "user_avaiability", columnDefinition = "text[]")
+    private List<String> avaiability;
 
     @Column(name = "user_image", length = 255)
     private String image;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<Location> locations;
-
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
+    @JoinTable(
+            name = "play_style_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "play_style_id")
+    )
     private Set<PlayStyle> playStyles;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany
+    @JoinTable(
+            name = "rol_type_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_type_id")
+    )
     private Set<RolType> rolTypes;
 }

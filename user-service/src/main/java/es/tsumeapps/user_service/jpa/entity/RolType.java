@@ -1,4 +1,5 @@
-package es.tsumeapps.user_service.exception.jpa.entity;
+package es.tsumeapps.user_service.jpa.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
@@ -9,11 +10,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) // ✅ genera equals/hashCode solo con campos incluidos
 public class RolType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rol_type_id")
+    @EqualsAndHashCode.Include // ✅ incluir solo el id
     private Long id;
 
     @Column(name = "rol_type_name", nullable = false, length = 100)
@@ -25,5 +28,6 @@ public class RolType {
             joinColumns = @JoinColumn(name = "rol_type_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
+    @ToString.Exclude // ✅ evita bucles recursivos en logs
     private Set<User> users;
 }

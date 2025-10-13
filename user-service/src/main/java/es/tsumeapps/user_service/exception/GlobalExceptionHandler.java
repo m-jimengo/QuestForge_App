@@ -1,4 +1,4 @@
-package es.tsumeapps.user_service.Exceptions;
+package es.tsumeapps.user_service.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package es.tsumeapps.user_service.Exceptions;
+package es.tsumeapps.user_service.exception;
 import org.springframework.http.HttpStatus;
 
 public enum ErrorCode {

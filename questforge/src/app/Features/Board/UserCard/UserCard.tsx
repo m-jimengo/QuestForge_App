@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { UserCardProps } from '../../../Interfaces/Board/user-card-interface';
-import './UserCard.css';
+import React from "react";
+import Image from "next/image";
+import { UserCardProps } from "../../../Interfaces/Board/user-card-interface";
+import "./UserCard.css";
 
-const UserCard: React.FC<UserCardProps> = ({ user, onClick, className = '' }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  user,
+  onClick,
+  className = "",
+}) => {
   const handleClick = () => {
     if (onClick) {
       onClick(user);
@@ -13,7 +17,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onClick, className = '' }) =>
   };
 
   return (
-    <div 
+    <div
       className={`user-card ${className}`}
       onClick={handleClick}
       role={onClick ? "button" : undefined}
@@ -21,7 +25,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onClick, className = '' }) =>
     >
       <div className="user-card-image-container">
         <Image
-          src={user.image}
+          src={user.image.startsWith("http") ? user.image : `/${user.image}`}
           alt={`${user.name} profile picture`}
           width={250}
           height={200}
@@ -37,7 +41,7 @@ const UserCard: React.FC<UserCardProps> = ({ user, onClick, className = '' }) =>
           </h3>
           <span className="user-card-location">{user.location}</span>
         </div>
-        
+
         <p className="user-card-quote">"{user.quote}"</p>
       </div>
     </div>
