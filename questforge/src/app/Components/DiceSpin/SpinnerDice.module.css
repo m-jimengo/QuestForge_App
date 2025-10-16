@@ -1,4 +1,3 @@
-/* Utility class to center the spinner */
 .loader-center {
   display: flex;
   align-items: center;
@@ -7,21 +6,19 @@
   height: 100%;
 }
 
-
 .loader {
-  /* no glow */
   width: 48px;
   height: 48px;
   border-radius: 50%;
   display: inline-block;
-  border-top: 4px solid #FFF;
+  border-top: 4px solid var(--foreground, #fff);
   border-right: 4px solid transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   position: relative;
 }
+
 .loader::after {
-  /* no glow */
   content: '';
   box-sizing: border-box;
   position: absolute;
@@ -30,10 +27,11 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border-left: 4px solid #d4af37;
+  border-left: 4px solid var(--gold, #d4af37);
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

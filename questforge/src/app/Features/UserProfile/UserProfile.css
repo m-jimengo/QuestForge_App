@@ -1,0 +1,166 @@
+.profileContainer {
+    display: flex;
+    gap: 8rem; /* más espacio entre ambos containers */
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3.5rem 2rem;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    /* Fondo de pergamino con imagen scroll.png */
+    background: url('/assets/scroll.png') center center/cover no-repeat;
+    border-radius: 22px;
+    box-shadow: 0 2px 24px rgba(212,175,55,0.13);
+    /* Sin border */
+}
+
+.profileLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 340px;
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 18px;
+    box-shadow: none;
+    background: none;
+}
+
+.profileImageWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.profileImage {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #d4af37;
+    box-shadow: 0 2px 12px rgba(212,175,55,0.18);
+    width: 180px !important;
+    height: 180px !important;
+}
+
+.profileName {
+    /* fuente actual, no cambiar */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0.5rem 0 0.3rem 0;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+.profileMeta {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.7rem;
+}
+
+.medievalSoft {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.01em;
+}
+
+.profileAge {
+    color: #d4af37;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: normal; /* no cursiva */
+    letter-spacing: 0.01em;
+}
+
+.profileLocation {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.85;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: normal; /* no cursiva */
+    letter-spacing: 0.01em;
+}
+
+.profileQuote {
+    margin-top: 1.2rem;
+    font-size: 1.08rem;
+    color: #e4cd80;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.92;
+}
+
+.profileRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 18px;
+    box-shadow: none;
+    min-width: 340px;
+    align-items: stretch; /* estira hijos al ancho completo */
+    background: none;
+    position: relative;
+}
+
+.profileSectionTitle {
+    /* fuente actual, no cambiar */
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: left;
+}
+
+.gold {
+    color: #d4af37;
+}
+
+.profileBio {
+    color: #fff;
+    font-size: 1.08rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    opacity: 0.97;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: normal; /* no cursiva */
+    letter-spacing: 0.01em;
+}
+
+/* Línea difusa entre título y texto en el container derecho */
+.profileDivider {
+    width: 100%;
+    max-width: 100%;
+    height: 0.25px;
+    margin: 0.12rem 0 0.22rem 0;
+    border: none;
+    border-radius: 1px;
+    background: #b8d2ff;
+    box-shadow: none;
+    opacity: 1;
+    align-self: stretch;
+}
+
+@media (max-width: 900px) {
+    .profileContainer {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+        padding: 2rem 0.5rem;
+    }
+    .profileLeft, .profileRight {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+}

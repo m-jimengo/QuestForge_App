@@ -1,27 +1,32 @@
-package es.tsumeapps.user_directory_service;
+package es.tsumeapps.user_directory_service; // ⬅️ importa tu wrapper
+import es.tsumeapps.user_directory_service.dto.CommonResponse;
 import es.tsumeapps.user_directory_service.dto.output.userOutput.UserListOutputDTO;
 import es.tsumeapps.user_directory_service.dto.output.commonOutput.CommonOutput;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @FeignClient(name = "user-service")
 public interface UserClient {
+
+    // Este sí va bajo /users en el user-service
     @GetMapping("/users/filter")
-    List<UserListOutputDTO> searchUsers(
-            @RequestParam(required = false) List<String> location,
-            @RequestParam(required = false) List<String> rolType,
-            @RequestParam(required = false) List<String> playStyle,
-            @RequestParam(required = false) List<Integer> age,
-            @RequestParam(required = false) List<String> gender
+    CommonResponse<List<UserListOutputDTO>> searchUsers(
+            @RequestParam(name = "locations",  required = false) List<String> locations,
+            @RequestParam(name = "rolTypes",   required = false) List<String> rolTypes,
+            @RequestParam(name = "playStyles", required = false) List<String> playStyles,
+            @RequestParam(name = "ages",       required = false) List<Integer> ages,
+            @RequestParam(name = "genders",    required = false) List<String> genders
     );
+
+    // Estos van bajo /get-all según tu CommonController
     @GetMapping("/get-all/locations")
-    List<CommonOutput> getAllLocations();
+    CommonResponse<List<CommonOutput>> getAllLocations();
 
     @GetMapping("/get-all/playstyles")
-    List<CommonOutput> getAllPlayStyles();
+    CommonResponse<List<CommonOutput>> getAllPlayStyles();
 
     @GetMapping("/get-all/roltypes")
-    List<CommonOutput> getAllRolTypes();
+    CommonResponse<List<CommonOutput>> getAllRolTypes();
 }
-

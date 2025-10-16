@@ -1,4 +1,4 @@
-// utils/http/response.ts
+
 import Swal from "sweetalert2";
 
 export type CommonResponse<Data> = {
@@ -54,7 +54,6 @@ export async function handleResponse<Data>({
     }
   }
 
-  // ✅ Simplemente devolvemos el payload sin añadir uuid
   const payload = (data as any)?.response ?? (data as any)?.data ?? data;
   return { success: true, status: response.status, response: payload as Data };
 }

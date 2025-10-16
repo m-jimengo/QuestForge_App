@@ -1,4 +1,4 @@
-package es.tsumeapps.user_directory_service;
+package es.tsumeapps.user_directory_service.dto;
 import lombok.*;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class CommonResponse<T> {

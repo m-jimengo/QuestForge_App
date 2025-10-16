@@ -4,14 +4,8 @@ import es.tsumeapps.user_service.dto.input.CreateUserInput;
 import es.tsumeapps.user_service.dto.output.userOutput.UserListOutputDTO;
 import es.tsumeapps.user_service.exception.ApiException;
 import es.tsumeapps.user_service.exception.ErrorCode;
-import es.tsumeapps.user_service.jpa.entity.Location;
-import es.tsumeapps.user_service.jpa.entity.PlayStyle;
-import es.tsumeapps.user_service.jpa.entity.RolType;
-import es.tsumeapps.user_service.jpa.entity.User;
-import es.tsumeapps.user_service.jpa.repository.LocationRepository;
-import es.tsumeapps.user_service.jpa.repository.PlayStyleRepository;
-import es.tsumeapps.user_service.jpa.repository.RolTypeRepository;
-import es.tsumeapps.user_service.jpa.repository.UserRepository;
+import es.tsumeapps.user_service.jpa.entity.*;
+import es.tsumeapps.user_service.jpa.repository.*;
 import es.tsumeapps.user_service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private final LocationRepository locationRepository;
     private final PlayStyleRepository playStyleRepository;
     private final RolTypeRepository rolTypeRepository;
+    private final RolDetailsRepository rolDetailsRepository;
 
     // 🔹 List all users
     @Override
@@ -82,7 +77,6 @@ public class UserServiceImpl implements UserService {
                     .collect(Collectors.toSet());
         }
 
-        // 🧙‍♂️ Recuperar múltiples RolTypes
         Set<RolType> rolTypes = null;
         if (input.getRolTypeIds() != null && !input.getRolTypeIds().isEmpty()) {
             rolTypes = input.getRolTypeIds().stream()
@@ -90,6 +84,19 @@ public class UserServiceImpl implements UserService {
                             .orElseThrow(() -> new ApiException(
                                     ErrorCode.INVALID_INPUT.code(),
                                     "Invalid role type ID: " + id,
+                                    ErrorCode.INVALID_INPUT.status()
+                            )))
+                    .collect(Collectors.toSet());
+        }
+
+        // 🧩 Recuperar múltiples RolDetails
+        Set<RolDetails> rolDetails = null;
+        if (input.getRolDetailsIds() != null && !input.getRolDetailsIds().isEmpty()) {
+            rolDetails = input.getRolDetailsIds().stream()
+                    .map(id -> rolDetailsRepository.findById(id)
+                            .orElseThrow(() -> new ApiException(
+                                    ErrorCode.INVALID_INPUT.code(),
+                                    "Invalid rol details ID: " + id,
                                     ErrorCode.INVALID_INPUT.status()
                             )))
                     .collect(Collectors.toSet());
@@ -107,11 +114,14 @@ public class UserServiceImpl implements UserService {
                 .location(location)
                 .playStyles(playStyles)
                 .rolTypes(rolTypes)
+                .rolDetails(rolDetails)
                 .build();
 
         User savedUser = userRepository.save(user);
         return toOutputDTO(savedUser);
     }
+
+    // 🔹 Convert entity to DTO
     private UserListOutputDTO toOutputDTO(User user) {
         return UserListOutputDTO.builder()
                 .id(user.getId())
@@ -123,22 +133,26 @@ public class UserServiceImpl implements UserService {
                 .quote(user.getQuote())
                 .avaiability(user.getAvaiability())
                 .image(user.getImage())
-                .location(user.getLocation() != null ? user.getLocation().getName() : null) // 👈 AÑADIDO
+                .location(user.getLocation() != null ? user.getLocation().getName() : null)
                 .playStyles(user.getPlayStyles() != null
                         ? user.getPlayStyles().stream().map(PlayStyle::getName).collect(Collectors.toSet())
                         : null)
                 .rolTypes(user.getRolTypes() != null
                         ? user.getRolTypes().stream().map(RolType::getName).collect(Collectors.toSet())
                         : null)
+                .rolDetails(user.getRolDetails() != null
+                        ? user.getRolDetails().stream().map(RolDetails::getName).collect(Collectors.toSet())
+                        : null)
                 .build();
     }
 
-    // Filter user
+    // 🔹 Filter users
     @Override
     public List<UserListOutputDTO> filterUsers(
             List<String> location,
             List<String> rolType,
             List<String> playStyle,
+            List<String> rolDetails,
             List<Integer> age,
             List<String> gender
     ) {
@@ -148,10 +162,25 @@ public class UserServiceImpl implements UserService {
                 .filter(u -> location == null || (u.getLocation() != null && location.contains(u.getLocation().getName())))
                 .filter(u -> rolType == null || (u.getRolTypes() != null && u.getRolTypes().stream().anyMatch(r -> rolType.contains(r.getName()))))
                 .filter(u -> playStyle == null || (u.getPlayStyles() != null && u.getPlayStyles().stream().anyMatch(p -> playStyle.contains(p.getName()))))
+                .filter(u -> rolDetails == null || (u.getRolDetails() != null && u.getRolDetails().stream().anyMatch(d -> rolDetails.contains(d.getName()))))
                 .filter(u -> age == null || age.contains(u.getAge()))
                 .filter(u -> gender == null || gender.contains(u.getGender()))
                 .map(this::toOutputDTO)
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public UserListOutputDTO getUserProfile(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ApiException(
+                        ErrorCode.USER_NOT_FOUND.code(),
+                        "User not found with email: " + email,
+                        ErrorCode.USER_NOT_FOUND.status()
+                ));
+        return toOutputDTO(user);
+    }
+
+    public UserListOutputDTO mapToOutputDTO(User user) {
+        return toOutputDTO(user);
+    }
 }

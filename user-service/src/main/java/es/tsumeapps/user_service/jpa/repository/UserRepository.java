@@ -2,8 +2,10 @@ package es.tsumeapps.user_service.jpa.repository;
 import es.tsumeapps.user_service.jpa.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
+import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
+    Optional<User> findByEmail(String email);
+
 }

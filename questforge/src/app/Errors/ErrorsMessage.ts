@@ -1,4 +1,3 @@
-
 export const HTTP_ERROR_MESSAGES = {
   400: "The request contains invalid or missing information. Please check your input and try again.",
   401: "Authentication required. Please log in to access this resource.",
@@ -8,7 +7,6 @@ export const HTTP_ERROR_MESSAGES = {
   409: "There was a conflict with your request. Please refresh and try again.",
   422: "The data provided couldn't be processed. Please check the format and try again.",
   429: "Too many requests. Please wait a moment before trying again.",
-
   500: "Internal server error. Our team has been notified and is working on a fix.",
   501: "This feature is not currently supported. Please try again later.",
   502: "Server is temporarily unavailable. Please try again in a few minutes.",
@@ -53,8 +51,6 @@ export const getErrorMessage = (statusCode?: number, fallbackMessage?: string): 
   if (statusCode && HTTP_ERROR_MESSAGES[statusCode as keyof typeof HTTP_ERROR_MESSAGES]) {
     return HTTP_ERROR_MESSAGES[statusCode as keyof typeof HTTP_ERROR_MESSAGES];
   }
-  if (fallbackMessage) {
-    return fallbackMessage;
-  }
+  if (fallbackMessage) return fallbackMessage;
   return GENERIC_ERROR_MESSAGES.UNKNOWN;
 };

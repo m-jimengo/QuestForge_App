@@ -1,9 +1,32 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { UserService } from "../../Services/User/user-service";
 import { User } from "../../Interfaces/User/user-interface";
 import { IMAGES } from "../../Constants/Images/Images";
+
+const mockUser: User = {
+	id: 1,
+	name: "Lucía Fernández",
+	image: "/images/users/lucia.png",
+	quote: "Dreams are maps for the brave.",
+	playStyles: ["Tabletop"],
+	rolTypes: ["Dungeons & Dragons"],
+	locations: "Sevilla",
+	availability: ["Friday night", "Sunday morning"],
+	age: 0,
+	gender: "",
+	email: "",
+	bio: ""
+};
+
+const UserService = {
+	getUser: async (): Promise<User> => {
+		// Simula una llamada a API con un pequeño retardo
+		return new Promise((resolve) => {
+			setTimeout(() => resolve(mockUser), 500);
+		});
+	},
+};
 
 const Navbar: React.FC = () => {
 	const [user, setUser] = useState<User | null>(null);
@@ -15,15 +38,16 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className="navbar">
 			<div className="navbar-left">
-						<Image
-							src={IMAGES.NAVBAR_LOGO}
-							alt="Logo"
-							width={100}
-							height={100}
-							className="navbar-logo"
-							quality={100}
-						/>
+				<Image
+					src={IMAGES.NAVBAR_LOGO}
+					alt="Logo"
+					width={100}
+					height={100}
+					className="navbar-logo"
+					quality={100}
+				/>
 			</div>
+
 			<div className="navbar-right">
 				<div className="navbar-center">
 					<a href="/people" className="navbar-link">

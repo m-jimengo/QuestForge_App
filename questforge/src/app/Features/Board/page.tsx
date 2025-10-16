@@ -1,35 +1,47 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import GenericScrollbar from "@/app/Components/ScrollBar/GenericScrollBar";
 import styles from "./board.module.css";
-import BoardFilters from "./BoardFilters/boardFilters";
+import BoardFilters, { BoardFiltersValue } from "./BoardFilters/boardFilters";
 import UserCard from "./UserCard/UserCard";
 import Loader from "@/app/Components/DiceSpin/SpinnerDice";
-import UserCardService from "@/app/Services/Board/user-card-service";
-import { User } from "@/app/Interfaces/Board/user-card-interface";
+import { User } from "@/app/Interfaces/User/user-interface";
+import { UserBoardFilter } from "@/app/Services/Board/board-service";
+import { getErrorsFromBack } from "@/app/Errors/getErrorsFromBack";
 
 export default function BoardPage() {
-  // 👇 Aquí llamamos al backend real usando React Query
+  const [filters, setFilters] = useState<BoardFiltersValue>({
+    locations: [],
+    games: [],
+    roles: [],
+    query: "",
+  });
+
+  const backendFilters = useMemo(
+    () => ({
+      locations: filters.locations,
+      playStyles: filters.games,
+      rolTypes: filters.roles,
+    }),
+    [filters]
+  );
+
   const {
     data: users = [],
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: ["users"], // clave de caché
+    queryKey: ["user-board-filter", backendFilters],
     queryFn: async () => {
-      const res = await UserCardService.getAllUsers();
-      if (!res.success) throw new Error("Error fetching users");
+      const res = await UserBoardFilter.searchUsers(backendFilters);
+      if (!res?.success) throw res; 
       return res.response ?? [];
     },
-    staleTime: 1000 * 60 * 5, // cache de 5 min
-    refetchOnWindowFocus: false, // no recargar al cambiar de pestaña
+    refetchOnWindowFocus: false,
   });
-
-  const handleUserClick = (user: User) => {
-    console.log("Usuario seleccionado:", user);
-  };
 
   if (isLoading) {
     return (
@@ -42,22 +54,21 @@ export default function BoardPage() {
   }
 
   if (isError) {
+    const errorMessage = getErrorsFromBack(error);
     return (
       <div className={styles.loadingOverlay}>
-        <p>Error loading users 😢</p>
-        <pre style={{ color: "red" }}>{String(error)}</pre>
+        <p className={styles.errorText}>{errorMessage}</p>
       </div>
     );
   }
 
   return (
     <div className={styles.boardFrame}>
-      <BoardFilters />
-
+      <BoardFilters onChange={setFilters} />
       <GenericScrollbar className={styles.boardScrollbar}>
         <div className={styles.userCardsGrid}>
-          {users.map((user) => (
-            <UserCard key={user.id} user={user} onClick={handleUserClick} />
+          {users.map((user: User) => (
+            <UserCard key={user.id} user={user} onClick={() => {}} />
           ))}
         </div>
       </GenericScrollbar>

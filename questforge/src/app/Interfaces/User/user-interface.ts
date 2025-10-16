@@ -7,8 +7,16 @@ export interface User {
   bio: string;
   location: string;
   quote: string;
-  availability: string;
-  playStyle: string;
-  rolType: string;
+  availability: string[];
+  playStyles: string[];
+  rolTypes: string[];
   image: string;
+}
+
+export interface UserSearchFilters {
+  locations?: string[];   
+  rolTypes?: string[];    
+  playStyles?: string[]; 
+  ages?: number[];        
+  genders?: string[];     
 }

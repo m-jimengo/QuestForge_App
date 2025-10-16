@@ -1,16 +1,10 @@
 package es.tsumeapps.user_service.dto.input;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
+import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class CreateUserInput {
 
     private String name;
@@ -19,14 +13,12 @@ public class CreateUserInput {
     private String email;
     private String bio;
     private String quote;
-
     private List<String> avaiability;
-
     private String image;
 
     private Long locationId;
+    private Set<Long> playStyleIds;
+    private Set<Long> rolTypeIds;
 
-    private List<Long> playStyleIds;
-
-    private List<Long> rolTypeIds;
+    private Set<Long> rolDetailsIds;
 }

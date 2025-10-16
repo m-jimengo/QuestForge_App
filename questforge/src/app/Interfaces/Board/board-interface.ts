@@ -19,13 +19,17 @@ export interface UserCardProps {
   className?: string;
 }
 
-export interface UserFilters {
-  availability?: string[];
-  playStyle?: string[];
-  rolType?: string[];
-  location?: string;
-  ageRange?: {
-    min: number;
-    max: number;
-  };
+export interface LocationFilter {
+  id: number;
+  name: string;
+}
+
+export interface PlayStyleFilter {
+  id: number;
+  name: string;
+}
+
+export interface RolTypeFilter {
+  id: number;
+  name: string;
 }

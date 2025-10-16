@@ -24,7 +24,7 @@ public class UserListOutputDTO {
     private List<String> avaiability;
     private String image;
     private String location;
-
     private Set<String> playStyles;
     private Set<String> rolTypes;
+    private Set<String> rolDetails;
 }

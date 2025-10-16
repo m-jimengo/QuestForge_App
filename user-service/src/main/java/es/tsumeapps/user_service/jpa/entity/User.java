@@ -29,6 +29,9 @@ public class User {
     @Column(name = "user_email", length = 150, unique = true)
     private String email;
 
+    @Column(name = "user_password", nullable = false, length = 255)
+    private String password;
+
     @Column(name = "user_bio")
     private String bio;
 
@@ -60,4 +63,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "rol_type_id")
     )
     private Set<RolType> rolTypes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "rol_details_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_details_id")
+    )
+    private Set<RolDetails> rolDetails;
+
 }

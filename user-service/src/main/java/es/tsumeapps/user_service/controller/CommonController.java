@@ -1,4 +1,6 @@
 package es.tsumeapps.user_service.controller;
+
+import es.tsumeapps.user_service.dto.CommonResponse;
 import es.tsumeapps.user_service.dto.output.commonOutput.CommonOutput;
 import es.tsumeapps.user_service.service.CommonService;
 import lombok.RequiredArgsConstructor;
@@ -16,17 +18,26 @@ public class CommonController {
     private final CommonService commonService;
 
     @GetMapping("/locations")
-    public ResponseEntity<List<CommonOutput>> getAllLocations() {
-        return ResponseEntity.ok(commonService.getAllLocations());
+    public ResponseEntity<CommonResponse<List<CommonOutput>>> getAllLocations() {
+        var data = commonService.getAllLocations();
+        return ResponseEntity.ok(CommonResponse.ok(data));
     }
 
     @GetMapping("/playstyles")
-    public ResponseEntity<List<CommonOutput>> getAllPlayStyles() {
-        return ResponseEntity.ok(commonService.getAllPlayStyles());
+    public ResponseEntity<CommonResponse<List<CommonOutput>>> getAllPlayStyles() {
+        var data = commonService.getAllPlayStyles();
+        return ResponseEntity.ok(CommonResponse.ok(data));
     }
 
     @GetMapping("/roltypes")
-    public ResponseEntity<List<CommonOutput>> getAllRolTypes() {
-        return ResponseEntity.ok(commonService.getAllRolTypes());
+    public ResponseEntity<CommonResponse<List<CommonOutput>>> getAllRolTypes() {
+        var data = commonService.getAllRolTypes();
+        return ResponseEntity.ok(CommonResponse.ok(data));
+    }
+
+    @GetMapping("/roldetails")
+    public ResponseEntity<CommonResponse<List<CommonOutput>>> getAllRolDetails() {
+        var data = commonService.getAllRolDetails();
+        return ResponseEntity.ok(CommonResponse.ok(data));
     }
 }

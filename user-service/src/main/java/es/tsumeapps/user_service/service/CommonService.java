@@ -8,4 +8,6 @@ public interface CommonService {
     List<CommonOutput> getAllLocations();
     List<CommonOutput> getAllPlayStyles();
     List<CommonOutput> getAllRolTypes();
+    List<CommonOutput> getAllRolDetails();
+
 }

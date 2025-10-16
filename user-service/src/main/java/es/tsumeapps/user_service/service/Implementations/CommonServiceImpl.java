@@ -4,6 +4,7 @@ import es.tsumeapps.user_service.dto.output.commonOutput.CommonOutput;
 import es.tsumeapps.user_service.jpa.repository.LocationRepository;
 import es.tsumeapps.user_service.jpa.repository.PlayStyleRepository;
 import es.tsumeapps.user_service.jpa.repository.RolTypeRepository;
+import es.tsumeapps.user_service.jpa.repository.RolDetailsRepository;
 import es.tsumeapps.user_service.service.CommonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class CommonServiceImpl implements CommonService {
     private final LocationRepository locationRepository;
     private final PlayStyleRepository playStyleRepository;
     private final RolTypeRepository rolTypeRepository;
+    private final RolDetailsRepository rolDetailsRepository;
 
     @Override
     public List<CommonOutput> getAllLocations() {
@@ -37,6 +39,13 @@ public class CommonServiceImpl implements CommonService {
     public List<CommonOutput> getAllRolTypes() {
         return rolTypeRepository.findAll().stream()
                 .map(r -> new CommonOutput(r.getId(), r.getName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommonOutput> getAllRolDetails() {
+        return rolDetailsRepository.findAll().stream()
+                .map(d -> new CommonOutput(d.getId(), d.getName()))
                 .collect(Collectors.toList());
     }
 }

@@ -1,66 +1,60 @@
 .loginContainer {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* antes center, ahora arriba */
-    align-items: center;
-    position: relative;
-    /* Capa de fondo con opacidad */
-    overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .backgroundOverlay {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background: rgba(11, 21, 51, 0.5);
-    pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(var(--navy-rgb, 11, 21, 51), 0.5);
+  pointer-events: none;
 }
 
-/* Logo en la esquina superior izquierda */
 .logoContainer {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 }
 
 .logo {
-    border-radius: 8px;
+  border-radius: var(--border-radius-md, 8px);
 }
 
-/* Formulario centrado con recuadro que engloba todo */
+/* Formulario */
 .loginForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    z-index: 1;
-    background: none;
-    padding: 2rem 4rem;
-    border-radius: 12px;
-    backdrop-filter: none;
-    border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  z-index: 1;
+  background: none;
+  padding: 2rem 4rem;
+  border-radius: var(--border-radius-lg, 12px);
+  border: none;
 }
 
-/* Mensaje de bienvenida sin recuadro propio */
 .welcomeBox {
-    text-align: center;
+  text-align: center;
 }
 
 .welcomeText {
-    color: #d4af37;
-    font-size: 2rem;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--gold);
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Fuente elegante solo para el texto de bienvenida */
 .medievalFont {
   font-family: 'Playfair Display', serif !important;
 }
 
-/* Fuente más estrecha y fina usando Open Sans */
 .fineFont,
 :global(.p-inputtext).loginInput,
 .loginInput :global(input.p-inputtext),
@@ -71,208 +65,175 @@
   letter-spacing: 0em;
 }
 
-/* Contenedor de inputs */
+/* Inputs */
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
 }
 
-/* 🎨 Input PrimeReact dentro del login */
 :global(.p-inputtext).loginInput,
 .loginInput :global(input.p-inputtext) {
-  background-color: #0b1533 !important; /* Azul oscuro interior */
-  color: #fff !important; /* Texto blanco */
-  border: 2px solid #d4af37 !important; /* Borde dorado */
-  padding: 0.45rem 1.25rem !important; /* más alargados horizontalmente */
+  background-color: var(--navy) !important;
+  color: var(--text-light, #fff) !important;
+  border: 2px solid var(--gold) !important;
+  padding: 0.45rem 1.25rem !important;
   font-size: 1.05rem !important;
-  border-radius: 6px !important;
-  letter-spacing: 0.01em;
-  transition: all 0.3s ease !important;
+  border-radius: var(--border-radius-md, 6px) !important;
+  transition: var(--transition-smooth, all 0.3s ease) !important;
   box-shadow: none !important;
-  font-family:'Roboto', Arial, sans-serif !important;
+  font-family: 'Roboto', Arial, sans-serif !important;
   font-weight: 400 !important;
 }
 
-/* Placeholder */
 .loginInput :global(input.p-inputtext)::placeholder {
   color: rgba(255, 249, 249, 1) !important;
 }
 
-/* Hover */
 .loginInput :global(input.p-inputtext):hover {
-  border-color: #f4d03f !important;
+  border-color: var(--gold-light, #f4d03f) !important;
 }
 
-/* Focus */
 .loginInput :global(input.p-inputtext):focus {
   background: rgba(11, 21, 51, 0.9) !important;
-  border-color: #f4d03f !important;
+  border-color: var(--gold-light, #f4d03f) !important;
   box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25) !important;
   outline: none !important;
 }
 
-/* Opciones de recordarme y contraseña olvidada */
 .optionsRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 300px;
-    margin-top: 0; /* aún más pegado */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-top: 0;
 }
 
 .checkboxLabel {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 .customCheckbox {
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #d4af37;
-    border-radius: 4px;
-    background: #0b1533;
-    margin-right: 0.5rem;
-    position: relative;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s;
-    font-family: 'Roboto', Arial, sans-serif !important;
-    font-size: 0.88rem !important;
-    font-weight: 400 !important;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  background: var(--navy);
+  margin-right: 0.5rem;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 .customCheckbox:checked {
-    background: #0b1533;
-    border-color: #f4d03f;
+  background: var(--navy);
+  border-color: var(--gold-light);
 }
 
 .customCheckbox:checked::after {
-    content: '';
-    position: absolute;
-    left: 4px;
-    top: 1px;         /* antes 0px, ahora más centrado verticalmente */
-    width: 5px;       /* antes 7px, más pequeño para centrar */
-    height: 6px;     /* antes 13px, más pequeño para centrar */
-    border: solid #d4af37;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-    display: block;
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 6px;
+  border: solid var(--gold);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
-.checkboxText {
-    color: #d4af37;
-    font-size: 0.88rem; /* más pequeño */
-    font-weight: 400 !important;
-    font-family: 'Roboto', Arial, sans-serif !important;
+.checkboxText,
+.forgotPassword {
+  color: var(--gold);
+  font-size: 0.88rem;
+  font-weight: 400 !important;
+  font-family: 'Roboto', Arial, sans-serif !important;
 }
 
 .forgotPassword {
-    color: #d4af37;
-    text-decoration: none;
-    font-size: 0.88rem; /* más pequeño */
-    font-weight: 400 !important;
-    transition: color 0.2s;
-    font-family: 'Roboto', Arial, sans-serif !important;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .forgotPassword:hover {
-    color: #f4d03f;
-    text-decoration: underline;
+  color: var(--gold-light);
+  text-decoration: underline;
 }
 
-/* Estilos para el botón de inicio de sesión */
+/* Botón principal */
 .buttonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 0.2rem; /* antes 1.8rem, ahora más arriba */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.2rem;
 }
 
 .loginButton {
-    background: linear-gradient(to bottom, #E8C87A, #B58D45);
-    color: #0b1533;
-    font-family: 'Roboto', Arial, sans-serif;
-    font-size: 1.25rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px 40px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    max-width: 300px;
-    box-shadow:
-        0 4px 6px rgba(0, 0, 0, 0.4),
-        0 1px 3px rgba(255, 255, 255, 0.2) inset;
-    transition: all 0.3s ease;
-    text-align: center;
-    letter-spacing: 0.03em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  background: linear-gradient(to bottom, #e8c87a, #b58d45);
+  color: var(--navy);
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 40px;
+  border: none;
+  border-radius: var(--border-radius-md, 8px);
+  cursor: pointer;
+  width: 100%;
+  max-width: 300px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(255, 255, 255, 0.2) inset;
+  transition: var(--transition-smooth);
+  text-align: center;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .loginButton:hover {
-    background: linear-gradient(to bottom, #F0D495, #D2A860);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
-    transform: translateY(-1px);
+  background: linear-gradient(to bottom, #f0d495, #d2a860);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
 }
 
 .loginButton:active {
-    background: linear-gradient(to bottom, #B58D45, #E8C87A);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    transform: translateY(1px);
+  background: linear-gradient(to bottom, #b58d45, #e8c87a);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(1px);
 }
 
 .loginButton::after {
-    content: "";
-    position: absolute;
-    left: 12%;
-    top: 18%;
-    width: 60%;
-    height: 25%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.05) 100%);
-    border-radius: 8px;
-    pointer-events: none;
-    filter: blur(0.5px);
-    opacity: 0.7;
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 18%;
+  width: 60%;
+  height: 25%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: var(--border-radius-md, 8px);
+  pointer-events: none;
+  filter: blur(0.5px);
+  opacity: 0.7;
 }
 
-/* Nueva regla para el divisor */
 .loginDivider {
   width: 100%;
   max-width: 800px;
   height: 2px;
   margin: 2.2rem auto 0 auto;
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(212,175,55,0) 0%,
-      rgba(212,175,55,0.4) 25%,
-      rgba(226,186,52,0.85) 50%,
-      rgba(212,175,55,0.4) 75%,
-      rgba(212,175,55,0) 100%
-    ),
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.05) 20%,
-      rgba(243,250,160,0.9) 50%,
-      rgba(255,255,255,0.05) 80%,
-      rgba(255,255,255,0) 100%
-    );
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% 100%, 300% 100%;
-  background-position: 0 0, -150% 0;
+  background-image: var(--gradient-gold-line);
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 6px rgba(212,175,55,0.3);
@@ -288,57 +249,55 @@
   100% { background-position: 0 0, 150% 0; }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
-    .logoContainer {
-        top: 1rem;
-        left: 1rem;
-    }
-    
-    .logo {
-        width: 80px !important;
-        height: 80px !important;
-    }
-    
-    .loginForm {
-        padding: 2rem 2.5rem;
-    }
-    
-    .welcomeText {
-        font-size: 1.5rem;
-    }
-    
-    .inputContainer {
-        max-width: 280px;
-    }
+  .logoContainer {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .logo {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  .loginForm {
+    padding: 2rem 2.5rem;
+  }
+
+  .welcomeText {
+    font-size: 1.5rem;
+  }
+
+  .inputContainer {
+    max-width: 280px;
+  }
 }
 
 .diceRollerBox {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    justify-content: center;
-    margin-bottom: 0.1rem; /* menos margen inferior */
-    transform: scale(1.35); /* más grande */
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-bottom: 0.1rem;
+  transform: scale(1.35);
 }
 
 .loginWithGoogle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.88rem;
-    color: #d4af37;
-    gap: 0.4rem;
-    font-weight: 400;
-    font-family: 'Roboto', Arial, sans-serif !important;
-    text-decoration: underline;
-    cursor: pointer;
-    opacity: 0.95;
-    transition: color 0.2s;
-    margin-top: -0.9rem; /* aún más pegado al botón */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  color: var(--gold);
+  gap: 0.4rem;
+  font-weight: 400;
+  font-family: 'Roboto', Arial, sans-serif !important;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.95;
+  transition: color 0.2s;
+  margin-top: -0.9rem;
 }
 
 .loginWithGoogle:hover {
-    color: #f4d03f;
+  color: var(--gold-light);
 }
-

@@ -1,0 +1,50 @@
+:root {
+  /* 🎨 Colores base */
+  --color-gold: #c7a062;
+  --color-gold-light: #d4b876;
+  --color-gold-soft: rgba(199, 160, 98, 0.3);
+
+  --color-navy: #0b1533;
+  --color-navy-dark: #050a19;
+  --color-navy-panel: #0f1e44;
+
+  --color-purple: #512da8;
+  --color-indigo: #1a237e;
+
+  --color-white: #ffffff;
+  --color-text-light: #e8eaf6;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+
+  /* 🌫️ Sombras */
+  --shadow-gold-soft: 0 0 10px rgba(199, 160, 98, 0.15),
+                      0 0 20px rgba(199, 160, 98, 0.08);
+  --shadow-gold-strong: 0 0 15px rgba(199, 160, 98, 0.25),
+                        0 0 30px rgba(199, 160, 98, 0.12);
+
+  /* 🧱 Bordes y radios */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 10px;
+  --border-gold: 2px solid var(--color-gold);
+
+  /* ✨ Gradientes */
+  --gradient-navy-purple: linear-gradient(135deg, var(--color-navy) 0%, var(--color-indigo) 50%, var(--color-purple) 100%);
+  --gradient-gold-line: linear-gradient(
+    to right,
+    rgba(212,175,55,0) 0%,
+    rgba(212,175,55,0.4) 25%,
+    rgba(226,186,52,0.85) 50%,
+    rgba(212,175,55,0.4) 75%,
+    rgba(212,175,55,0) 100%
+  );
+
+  /* 🪞 Tipografía */
+  --font-main: 'MedievalSharp', serif;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.2rem;
+
+  /* ⚙️ Transiciones */
+  --transition-fast: all 0.2s ease;
+  --transition-smooth: all 0.3s ease;
+}

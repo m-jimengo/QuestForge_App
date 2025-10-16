@@ -1,44 +1,3 @@
-.boardFrame {
-  position: relative;
-  min-height: 100vh;
-  padding-top: 50px;
-}
-
-.boardFrame::before,
-.boardFrame::after {
-  content: "";
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;              
-  height: 2px;            
-  pointer-events: none;
-  z-index: 9999;
-
-  background: linear-gradient(
-    to right,
-    rgba(212,175,55,0) 0%,
-    rgba(212,175,55,0.4) 25%,
-    rgba(226, 186, 52, 0.85) 50%,  
-    rgba(212,175,55,0.4) 75%,
-    rgba(212,175,55,0) 100%
-  );
-
-  box-shadow: 0 0 6px rgba(212,175,55,0.3);
-}
-
-.boardFrame::before { 
-  top: 50px;  
-}
-
-.boardFrame::after  { 
-  bottom: 50px;
-}
-.boardFrame {
-  position: relative;
-  min-height: 100vh;
-  padding-top: 16px;
-}
 
 .boardFrame {
   position: relative;
@@ -58,19 +17,21 @@
   z-index: 9999;
 
   background-image:
-    linear-gradient(
-      to right,
-      rgba(212,175,55,0) 0%,
-      rgba(212,175,55,0.4) 25%,
-      rgba(226,186,52,0.85) 50%,
-      rgba(212,175,55,0.4) 75%,
-      rgba(212,175,55,0) 100%
+    var(--gradient-gold-line, 
+      linear-gradient(
+        to right,
+        rgba(212,175,55,0) 0%,
+        rgba(212,175,55,0.4) 25%,
+        rgba(226,186,52,0.85) 50%,
+        rgba(212,175,55,0.4) 75%,
+        rgba(212,175,55,0) 100%
+      )
     ),
     linear-gradient(
       to right,
       rgba(255,255,255,0) 0%,
       rgba(255,255,255,0.05) 20%,
-      rgba(243, 250, 160, 0.904) 50%,   
+      rgba(243,250,160,0.9) 50%,
       rgba(255,255,255,0.05) 80%,
       rgba(255,255,255,0) 100%
     );
@@ -80,19 +41,17 @@
   background-position: 0 0, -150% 0;
 
   box-shadow: 0 0 6px rgba(212,175,55,0.3);
-
   animation: shine-pass 12s linear infinite;
 }
 
 .boardFrame::before { top: 75px; }
-
 .boardFrame::after  { bottom: 35px; }
 
 @keyframes shine-pass {
   0%   { background-position: 0 0, -150% 0; }
-  20%  { background-position: 0 0, -150% 0; } 
-  80%  { background-position: 0 0, 150% 0; }  
-  100% { background-position: 0 0, 150% 0; } 
+  20%  { background-position: 0 0, -150% 0; }
+  80%  { background-position: 0 0, 150% 0; }
+  100% { background-position: 0 0, 150% 0; }
 }
 
 .userCardsGrid {
@@ -110,25 +69,22 @@
   justify-content: center;
   align-items: center;
   height: 300px;
-  color: #c7a062;
+  color: var(--gold);
   font-size: 1.2rem;
   font-weight: 600;
 }
 
 .loadingOverlay {
   position: absolute;
-  inset: 0;                  /* top/right/bottom/left: 0 */
+  inset: 0;
   display: grid;
   place-items: center;
-  z-index: 10000;            /* > 9999 de tus líneas doradas */
-  pointer-events: none;      /* no bloquea el ratón */
-  /* opcional: velo suave mientras carga */
-  /* background: rgba(0,0,0,0.05); */
-  /* backdrop-filter: blur(1px);   */
+  z-index: 10000;
+  pointer-events: none;
 }
 
 .loaderBox {
-  width: 64px;               /* slightly larger than spinner for padding */
+  width: 64px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -171,7 +127,6 @@
   }
 }
 
-/* Board scrollbar specific styles */
 .boardScrollbar {
   height: 540px;
   width: 120%;

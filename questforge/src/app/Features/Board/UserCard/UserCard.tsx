@@ -2,8 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import { UserCardProps } from "../../../Interfaces/Board/user-card-interface";
 import "./UserCard.css";
+import { User } from "@/app/Interfaces/User/user-interface";
+
+export interface UserCardProps {
+  user: User;
+  onClick?: (user: User) => void;
+  className?: string;
+}
 
 const UserCard: React.FC<UserCardProps> = ({
   user,
@@ -25,7 +31,7 @@ const UserCard: React.FC<UserCardProps> = ({
     >
       <div className="user-card-image-container">
         <Image
-          src={user.image.startsWith("http") ? user.image : `/${user.image}`}
+          src={`/${user.image}`}
           alt={`${user.name} profile picture`}
           width={250}
           height={200}

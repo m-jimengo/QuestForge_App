@@ -1,4 +1,4 @@
-package es.tsumeapps.user_service;
+package es.tsumeapps.user_service.dto;
 import lombok.*;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Builder

@@ -1,6 +1,6 @@
 package es.tsumeapps.user_directory_service.service;
-
 import es.tsumeapps.user_directory_service.UserClient;
+import es.tsumeapps.user_directory_service.dto.CommonResponse;
 import es.tsumeapps.user_directory_service.dto.output.commonOutput.CommonOutput;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,15 +13,15 @@ public class CommonService {
 
     private final UserClient userCommonClient;
 
-    public List<CommonOutput> getAllLocations() {
-        return userCommonClient.getAllLocations();
+    public CommonResponse<List<CommonOutput>> getAllLocations() {
+        return userCommonClient.getAllLocations(); // passthrough
     }
 
-    public List<CommonOutput> getAllPlayStyles() {
-        return userCommonClient.getAllPlayStyles();
+    public CommonResponse<List<CommonOutput>> getAllPlayStyles() {
+        return userCommonClient.getAllPlayStyles(); // passthrough
     }
 
-    public List<CommonOutput> getAllRolTypes() {
-        return userCommonClient.getAllRolTypes();
+    public CommonResponse<List<CommonOutput>> getAllRolTypes() {
+        return userCommonClient.getAllRolTypes(); // passthrough
     }
 }

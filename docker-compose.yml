@@ -77,9 +77,9 @@ services:
     container_name: login-service
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/login_db
-      - SPRING_DATASOURCE_USERNAME=login_user
-      - SPRING_DATASOURCE_PASSWORD=loginpass
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/user_db
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
       - SERVER_FORWARD_HEADERS_STRATEGY=native
     ports:
       - "8081:8081"

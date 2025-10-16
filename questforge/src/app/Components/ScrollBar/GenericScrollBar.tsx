@@ -22,21 +22,16 @@ export default function GenericScrollbar({
   size,
 }: GenericScrollbarProps) {
   
-  // Determine CSS class based on size prop or custom dimensions
   const getSizeClass = () => {
     if (size) return size;
-    
-    // If custom dimensions are provided, use custom-size class
     if (height !== "200px" || width !== "100%") {
       return 'custom-size';
     }
-    
-    return ''; // Use default sizing
+    return ''; 
   };
 
   const sizeClass = getSizeClass();
   
-  // Only add CSS custom properties if using custom-size class
   const customProps = sizeClass === 'custom-size' ? {
     '--scrollbar-width': typeof width === 'number' ? `${width}px` : width,
     '--scrollbar-height': typeof height === 'number' ? `${height}px` : height,

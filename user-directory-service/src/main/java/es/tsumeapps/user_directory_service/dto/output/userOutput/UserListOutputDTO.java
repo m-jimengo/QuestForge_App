@@ -16,6 +16,7 @@ public class UserListOutputDTO {
     private Integer age;
     private String gender;
     private String email;
+    private String location;
     private String bio;
     private String quote;
     private List<String> avaiability;
