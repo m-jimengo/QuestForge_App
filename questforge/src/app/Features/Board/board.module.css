@@ -1,59 +1,26 @@
+/* ===============================
+   🌟 BOARD LAYOUT (sin líneas doradas)
+   =============================== */
 
 .boardFrame {
   position: relative;
   min-height: 100vh;
-  padding-top: 50px;
+  padding-top: 50px; /* mantiene el espacio superior para filtros u otros elementos */
 }
 
+/* 🚫 Eliminamos las líneas doradas del marco */
 .boardFrame::before,
 .boardFrame::after {
-  content: "";
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 2px;
-  pointer-events: none;
-  z-index: 9999;
-
-  background-image:
-    var(--gradient-gold-line, 
-      linear-gradient(
-        to right,
-        rgba(212,175,55,0) 0%,
-        rgba(212,175,55,0.4) 25%,
-        rgba(226,186,52,0.85) 50%,
-        rgba(212,175,55,0.4) 75%,
-        rgba(212,175,55,0) 100%
-      )
-    ),
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.05) 20%,
-      rgba(243,250,160,0.9) 50%,
-      rgba(255,255,255,0.05) 80%,
-      rgba(255,255,255,0) 100%
-    );
-
-  background-repeat: no-repeat, no-repeat;
-  background-size: 100% 100%, 300% 100%;
-  background-position: 0 0, -150% 0;
-
-  box-shadow: 0 0 6px rgba(212,175,55,0.3);
-  animation: shine-pass 12s linear infinite;
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  animation: none !important;
 }
 
-.boardFrame::before { top: 75px; }
-.boardFrame::after  { bottom: 35px; }
-
-@keyframes shine-pass {
-  0%   { background-position: 0 0, -150% 0; }
-  20%  { background-position: 0 0, -150% 0; }
-  80%  { background-position: 0 0, 150% 0; }
-  100% { background-position: 0 0, 150% 0; }
-}
-
+/* ===============================
+   📋 USER CARDS GRID
+   =============================== */
 .userCardsGrid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -64,6 +31,9 @@
   margin: 0 auto;
 }
 
+/* ===============================
+   ⏳ LOADING STATES
+   =============================== */
 .loadingContainer {
   display: flex;
   justify-content: center;
@@ -91,6 +61,9 @@
   justify-content: center;
 }
 
+/* ===============================
+   📱 RESPONSIVE GRID
+   =============================== */
 @media (max-width: 1200px) {
   .userCardsGrid {
     grid-template-columns: repeat(4, 1fr);
@@ -127,6 +100,9 @@
   }
 }
 
+/* ===============================
+   🖱️ SCROLLBAR WRAPPER
+   =============================== */
 .boardScrollbar {
   height: 540px;
   width: 120%;

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { User } from "../../Interfaces/User/user-interface";
@@ -11,7 +12,7 @@ const mockUser: User = {
 	quote: "Dreams are maps for the brave.",
 	playStyles: ["Tabletop"],
 	rolTypes: ["Dungeons & Dragons"],
-	locations: "Sevilla",
+	location: "Sevilla",
 	availability: ["Friday night", "Sunday morning"],
 	age: 0,
 	gender: "",
@@ -50,7 +51,7 @@ const Navbar: React.FC = () => {
 
 			<div className="navbar-right">
 				<div className="navbar-center">
-					<a href="/people" className="navbar-link">
+					<a href="/Features/Board" className="navbar-link">
 						<Image
 							src={IMAGES.PEOPLE_ICON}
 							alt="People"
@@ -74,13 +75,15 @@ const Navbar: React.FC = () => {
 
 				{user && (
 					<div className="navbar-user-photo">
-						<Image
-							src={user.image}
-							alt={user.name}
-							width={40}
-							height={40}
-							className="navbar-user-img"
-						/>
+							<Link href="/Features/UserProfile">
+							<Image
+								src={user.image}
+								alt={user.name}
+								width={40}
+								height={40}
+								className="navbar-user-img"
+							/>
+						</Link>
 					</div>
 				)}
 			</div>

@@ -34,7 +34,6 @@
   height: 200px;
 }
 
-/* Size variants */
 .generic-scrollbar.small {
   width: 300px;
   height: 150px;
@@ -58,7 +57,6 @@
   height: 100vh;
 }
 
-/* Custom sizing using CSS custom properties */
 .generic-scrollbar.custom-size {
   width: var(--scrollbar-width, 100%);
   height: var(--scrollbar-height, 200px);

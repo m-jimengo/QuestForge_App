@@ -67,9 +67,10 @@
 }
 
 .navbar-user-photo {
+  width: 56px; /* tamaño fijo del círculo */
+  height: 56px;
   border: 3px solid var(--gold);
   border-radius: 50%;
-  padding: 2px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: var(--shadow-gold-soft, 0 0 8px rgba(199, 160, 98, 0.15));
   display: flex;
@@ -77,18 +78,20 @@
   justify-content: center;
   margin-left: 7%;
   transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  flex-shrink: 0; /* evita que cambie de tamaño en pantallas pequeñas */
 }
 
 .navbar-user-photo:hover {
   cursor: pointer;
   box-shadow: 0 0 16px var(--gold), 0 0 8px var(--gold-light, #e4cd80);
   border-color: var(--gold-light, #e4cd80);
-  transform: scale(1.12);
+  transform: scale(1.05); /* más suave */
 }
 
 .navbar-user-img {
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 48px; /* ligeramente menor que el contenedor */
+  height: 48px;
   object-fit: cover;
+  flex-shrink: 0;
 }

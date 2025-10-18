@@ -9,27 +9,24 @@ type DiceRollerProps = {
   autoRotate?: boolean;
   goldColor?: string;
   rotationSpeed?: number;
-  /** radio base del tubo de las aristas */
   tubeRadius?: number;
-  /** factor de grosor del glow respecto al tubo base (1.0 = igual) */
   glowScale?: number;
-  /** opacidad del glow (0..1) */
   glowOpacity?: number;
 };
 
 export const DiceRoller: React.FC<DiceRollerProps> = ({
-  size = 4.5, // antes 3, ahora más grande
+  size = 4.5, 
   autoRotate = true,
   rotationSpeed = 0.3,
   goldColor = "#D4AF37",
-  tubeRadius = 0.030, // opcional: un poco más grueso para el dado grande
+  tubeRadius = 0.030, 
   glowScale = 1.9,
   glowOpacity = 0.35,
 }) => {
   return (
     <Canvas
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      style={{ width: "150px", height: "150px", background: "transparent" }} // antes 100%,100%, ahora tamaño fijo grande
+      style={{ width: "150px", height: "150px", background: "transparent" }} 
       camera={{ position: [0, 0, 8], fov: 45, near: 0.1, far: 100 }}
     >
       <Scene
@@ -82,10 +79,6 @@ const Scene: React.FC<DiceRollerProps> = ({
   );
 };
 
-/** Malla icosaedro:
- *  - Depth-mask (FrontSide) → oculta lo de detrás.
- *  - Aristas como TUBOS: núcleo dorado + glow aditivo (sin postprocesado, sin “cuadro de luz”).
- */
 const D20Mesh: React.FC<{
   goldColor: string;
   scale: number;
@@ -97,7 +90,6 @@ const D20Mesh: React.FC<{
     const radius = 1;
     const geo = new THREE.IcosahedronGeometry(radius, 0);
 
-    // Obtener aristas como pares de vértices
     const edges = new THREE.EdgesGeometry(geo, 1e-6);
     const pos = edges.attributes.position.array as Float32Array;
 
@@ -111,7 +103,7 @@ const D20Mesh: React.FC<{
       const center = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
 
       const quaternion = new THREE.Quaternion().setFromUnitVectors(
-        new THREE.Vector3(0, 1, 0), // cilindro apunta a +Y
+        new THREE.Vector3(0, 1, 0), 
         dir.clone().normalize()
       );
 
@@ -120,7 +112,6 @@ const D20Mesh: React.FC<{
     return { geometry: geo, edgeTubes: tubes };
   }, []);
 
-  // Material núcleo (doradito metálico)
   const coreMat = React.useMemo(
     () =>
       new THREE.MeshStandardMaterial({
@@ -133,7 +124,7 @@ const D20Mesh: React.FC<{
     [goldColor]
   );
 
-  // Material glow: aditivo, translúcido, no escribe Z (para halo suave), sí depthTest
+ 
   const glowMat = React.useMemo(
     () =>
       new THREE.MeshBasicMaterial({
@@ -147,10 +138,9 @@ const D20Mesh: React.FC<{
     [goldColor, glowOpacity]
   );
 
-  const radialSegments = 20; // más redondito
+  const radialSegments = 20; 
   return (
     <group scale={scale}>
-      {/* Depth mask de caras FRONT (oculta lo que está detrás) */}
       <mesh geometry={geometry}>
         <meshBasicMaterial
           side={THREE.FrontSide}
@@ -160,17 +150,14 @@ const D20Mesh: React.FC<{
         />
       </mesh>
 
-      {/* Tubos por arista: núcleo + halo */}
       {edgeTubes.map((tube, i) => (
         <group key={i} position={tube.center} quaternion={tube.quaternion}>
-          {/* Núcleo */}
           <mesh material={coreMat}>
             <cylinderGeometry
               args={[tubeRadius, tubeRadius, tube.length, radialSegments, 1, true]}
             />
           </mesh>
 
-          {/* Glow 1: un poco más grueso */}
           <mesh material={glowMat} renderOrder={2}>
             <cylinderGeometry
               args={[
@@ -183,27 +170,12 @@ const D20Mesh: React.FC<{
               ]}
             />
           </mesh>
-
-          {/* Glow 2 (opcional): aún más ancho pero más sutil (baja opacidad si lo activas) */}
-          {/* <mesh material={glowMat} renderOrder={3}>
-            <cylinderGeometry
-              args={[
-                tubeRadius * (glowScale * 1.4),
-                tubeRadius * (glowScale * 1.4),
-                tube.length,
-                radialSegments,
-                1,
-                true,
-              ]}
-            />
-          </mesh> */}
         </group>
       ))}
     </group>
   );
 };
 
-/** Números pegados a las caras, orientados por la normal y ocultos si no miran a cámara. */
 const D20Numbers: React.FC<{ goldColor: string; scale: number }> = ({
   goldColor,
   scale,
@@ -267,7 +239,6 @@ const D20Numbers: React.FC<{ goldColor: string; scale: number }> = ({
     return labels;
   }, []);
 
-  // Oculta números cuyas caras miran “hacia atrás”
   useFrame(() => {
     if (!groupRef.current) return;
 

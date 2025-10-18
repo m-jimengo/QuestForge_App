@@ -25,16 +25,13 @@ const Login: React.FC = () => {
         <div className={`${styles.loginContainer} ${playfair.className}`}>
             <div className={styles.backgroundOverlay}></div>
             <div className={styles.loginForm}>
-                {/* Dice Roller centrado arriba */}
                 <div>
                     <DiceRoller />
                 </div>
-                {/* Mensaje de bienvenida */}
                 <div className={styles.welcomeBox}>
                     <h1 className={`${styles.welcomeText} ${styles.medievalFont}`}>Welcome back, Adventurer!</h1>
                 </div>
 
-                {/* Inputs */}
                 <div className={styles.inputContainer}>
                     <InputText
                         value={username}
@@ -50,8 +47,6 @@ const Login: React.FC = () => {
                         placeholder="Password"
                         className={styles.loginInput}
                     />
-
-                    {/* Checkbox y enlace debajo de los inputs, pegado al input de password */}
                     <div className={styles.optionsRow}>
                         <label className={styles.checkboxLabel}>
                             <input
@@ -65,17 +60,14 @@ const Login: React.FC = () => {
                         </a>
                     </div>
                 </div>
-                {/* Botón dorado centrado */}
                 <div className={styles.buttonContainer}>
                     <button className={styles.loginButton} type="button">
                         Log In
                     </button>
                 </div>
-                {/* Login with Google justo debajo del botón */}
                 <div className={styles.loginWithGoogle}>
                     Login with Google
                 </div>
-                {/* Línea decorativa dorada debajo del botón */}
                 <div className={styles.loginDivider}></div>
             </div>
         </div>

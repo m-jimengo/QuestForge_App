@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, MedievalSharp } from "next/font/google";
-import 'primereact/resources/themes/lara-light-blue/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
+import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import "./globals.css";
-import "./globalBackground.css"; // 👈 importa aquí también el fondo global
+import "./globalBackground.css";
 import "./Components/Navbar/Navbar.css";
 import { Providers } from "./Providers";
+import Navbar from "./Components/Navbar/Navbar"; // 👈 importa tu Navbar
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,11 +42,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${medievalFont.variable}`}
       >
         <Providers>
-          <div className="global-page">
+          <div className="global-page boardFrame">
             <div className="global-mapBackground"></div>
-            <main className="global-main">
-              {children}
-            </main>
+
+            {/* 👇 Aquí va el Navbar para que esté en todas las páginas */}
+            <Navbar />
+
+            <main className="global-main">{children}</main>
           </div>
         </Providers>
       </body>
