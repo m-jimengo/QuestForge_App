@@ -68,7 +68,6 @@ const Login: React.FC = () => {
                 <div className={styles.loginWithGoogle}>
                     Login with Google
                 </div>
-                <div className={styles.loginDivider}></div>
             </div>
         </div>
     );

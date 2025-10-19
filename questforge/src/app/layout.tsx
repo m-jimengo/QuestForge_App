@@ -7,7 +7,11 @@ import "./globals.css";
 import "./globalBackground.css";
 import "./Components/Navbar/Navbar.css";
 import { Providers } from "./Providers";
-import Navbar from "./Components/Navbar/Navbar"; // 👈 importa tu Navbar
+import NavbarWrapper from "./Components/Navbar/NavbarWrapper"
+
+interface FrameWrapperProps {
+  children: React.ReactNode;
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +37,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
@@ -45,8 +47,8 @@ export default function RootLayout({
           <div className="global-page boardFrame">
             <div className="global-mapBackground"></div>
 
-            {/* 👇 Aquí va el Navbar para que esté en todas las páginas */}
-            <Navbar />
+            {/* 👇 Renderiza el Navbar solo si corresponde */}
+            <NavbarWrapper />
 
             <main className="global-main">{children}</main>
           </div>

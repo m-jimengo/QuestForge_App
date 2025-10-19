@@ -1,0 +1,133 @@
+/* Importar fuente medieval (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+/* fallback variables si no están definidas globalmente */
+:root {
+  --color-navy: var(--color-navy, #0b1533);
+  --color-gold: var(--color-gold, #e4cd80);
+}
+
+/* -----------------------------------------
+   CONTENEDOR: más grande y con más padding
+   ----------------------------------------- */
+.cu-root {
+  width: 720px;            /* aumentado */
+  max-width: 96%;
+  margin: 28px auto;
+  padding: 32px;           /* más padding */
+  background: rgba(11, 21, 51, 0.72); /* navy semitransparente */
+  border: 1px solid rgba(228,205,128,0.06);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  color: var(--color-gold);
+  text-align: center; /* centrar contenido */
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.forge-title {
+  margin: 0 0 6px 0;
+  font-size: 2.2rem; /* más grande */
+  color: var(--color-gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* fuente medieval */
+  font-family: "MedievalSharp", "Cinzel", serif;
+  text-align: center;
+}
+
+.forge-subtitle {
+  margin: 0 0 38px 0;
+  font-size: 1.3rem; /* un poco más grande */
+  color: rgba(228,205,128,0.95);
+  font-weight: 500;
+  text-align: center; /* centrado */
+}
+
+.create-user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center; /* centrar elementos del formulario */
+}
+
+/* Inputs estilo login azul navy con borde dorado */
+.cu-input {
+  background: var(--color-navy, #0b1533) !important;   /* fondo navy forzado */
+  color: #ffffff !important;
+  border: 1px solid var(--color-gold, #e4cd80) !important; /* borde dorado forzado */
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.96rem;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px; /* limitar ancho y centrar */
+  margin: 0 auto;
+  padding-left: 44px; /* espacio para el icono + gap */
+}
+
+/* fila de input: centrar y permitir que el wrapper tenga la anchura del input */
+.cu-input-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* wrapper relativo para posicionar el icono dentro del input */
+.cu-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* icono dentro del input (dorados) */
+.cu-input-icon {
+  position: absolute;
+  left: 12px;
+  top: calc(50% + 4px); /* desplazar icono ligeramente hacia abajo */
+  transform: translateY(-50%);
+  color: var(--color-gold, #e4cd80);
+  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* decorativo */
+}
+
+/* Focus visual (mantener contraste) */
+.cu-input:focus {
+  box-shadow: 0 8px 24px rgba(228,205,128,0.10);
+  border-color: rgba(228,205,128,0.95) !important;
+}
+
+/* -----------------------------------------
+   BOTÓN: ajustar tamaño si se necesita
+   ----------------------------------------- */
+.cu-continue {
+  margin-top: 38px;
+  background: linear-gradient(180deg, var(--color-gold, #e4cd80), #b99e4a);
+  color: var(--color-navy, #0b1533);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px; /* menos padding para hacerlo más estrecho */
+  width: 200px; 
+  height: 40px;/* ancho fijo más estrecho */
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(184,142,59,0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  align-self: center; /* centrar dentro del formulario */
+}
+
+.cu-continue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(184,142,59,0.22);
+}
+
+@media (max-width: 480px) {
+  .cu-root { padding: 16px; }
+  .forge-title { font-size: 1.6rem; }
+  .cu-input { padding: 10px 12px; max-width: calc(100% - 20px); }
+}

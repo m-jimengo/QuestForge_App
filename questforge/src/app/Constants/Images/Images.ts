@@ -11,6 +11,8 @@ export const IMAGES = {
   VERCEL_ICON: "/vercel.svg",
   WINDOW_ICON: "/window.svg",
   CURSOR_ICON:"assets/cursor/cursor.png",
+  PAPER: "assets/paper.png",
+  PHOTOUSER:"assets/photoImage.png",
 
   rolDetails: {
     smallParty: '/assets/rolDetails/icon1.png',
